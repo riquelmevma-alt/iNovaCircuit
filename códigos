@@ -1,0 +1,306 @@
+<!--
+  Arquivo: index.html
+  Template: Layout responsivo em tons claros (exemplo: iNovaCircuit)
+  O que contém:
+    - Cabeçalho responsivo com menu mobile
+    - Seção hero (apresentação)
+    - Serviços (grid)
+    - Portfólio (cards)
+    - Sobre
+    - Contato (formulário com placeholder para Formspree ou serviço similar)
+    - Rodapé
+
+  Como usar:
+    1) Salve este conteúdo como `index.html` (ou cole no GitHub > Add file > Create new file > index.html).
+    2) Se quiser separar CSS/JS, crie `styles.css` e `scripts.js` e mova as seções <style> e <script> para lá.
+    3) Para publicar grátis sem anúncios: use GitHub Pages.
+       - Crie um repositório com nome `seu-usuario.github.io` (substitua `seu-usuario`).
+       - Faça o upload de `index.html` (e pastas /assets se houver).
+       - O site estará disponível em: https://seu-usuario.github.io
+    4) Para formulário de contato: insira a URL action do Formspree (ou outro) no <form action="...">.
+
+  Se quiser que eu: gerar um repositório pronto no GitHub com esse arquivo + assets, ou separar em arquivos CSS/JS, avise — eu faço.
+--><!doctype html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>iNovaCircuit — Soluções em Eletrônica</title>
+  <meta name="description" content="Consertos, manutenção e desenvolvimento em eletrônica e elétrica. iNovaCircuit — seu equipamento de volta à vida." />  <!-- Google Font (pode manter ou trocar) -->  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">  <style>
+    /* Reset simples */
+    :root{
+      --bg: #f7fafc; /* fundo claro */
+      --card: #ffffff;
+      --muted: #6b7280;
+      --accent: #2563eb; /* azul vivo */
+      --accent-2: #60a5fa;
+      --radius: 12px;
+      --maxw: 1100px;
+      --gap: 24px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 16px;
+    }
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 16px;
+    }
+
+    /* Header */
+    header{background:transparent; position:sticky; top:0; z-index:40}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:10px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit}
+    .logo{
+      width:48px; height:48px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); border-radius:10px; display:grid; place-items:center; color:white; font-weight:700;
+    }
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0; align-items:center}
+    nav a{text-decoration:none; color:inherit; font-weight:500}
+    .cta{background:var(--accent); color:white; padding:8px 14px; border-radius:10px; text-decoration:none}
+
+    /* Mobile menu */
+    .mobile-toggle{display:none; background:transparent; border:0; font-size:20px}
+    @media (max-width:880px){
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+    }
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1fr 420px; gap:var(--gap); align-items:center; padding:36px 0}
+    .hero h1{font-size:clamp(26px,4vw,40px); margin:0 0 12px}
+    .hero p{color:var(--muted); margin:0 0 18px}
+    .hero .actions{display:flex; gap:12px}
+    .card{background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+    .hero-visual{height:280px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);}
+
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      .hero-visual{height:200px}
+    }
+
+    /* Services */
+    .services{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px}
+    .service{padding:18px; border-radius:10px}
+    .service h3{margin:8px 0 4px}
+    .service p{margin:0; color:var(--muted); font-size:14px}
+    @media (max-width:880px){.services{grid-template-columns:repeat(1,1fr)}}
+
+    /* Portfolio */
+    .portfolio{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .project{border-radius:10px; overflow:hidden; background:linear-gradient(180deg,#fff,#f8fafc);}
+    .project img{width:100%; display:block}
+    .project .info{padding:12px}
+    @media (max-width:1100px){.portfolio{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.portfolio{grid-template-columns:1fr}}
+
+    /* About & Contact */
+    .two-col{display:grid; grid-template-columns:1fr 360px; gap:24px; margin-top:24px}
+    @media (max-width:880px){.two-col{grid-template-columns:1fr}}
+
+    /* Footer */
+    footer{margin-top:28px; color:var(--muted); text-align:center; font-size:14px}
+
+    /* Small helpers */
+    .muted{color:var(--muted)}
+    .btn-outline{padding:8px 12px; border-radius:10px; border:1px solid #e6eefc; background:transparent}
+    input,textarea{width:100%; padding:10px; border-radius:8px; border:1px solid #e6eefc; font-size:14px}
+    label{display:block; font-weight:600; margin-bottom:6px}
+  </style></head>
+<body>
+  <div class="container">
+    <header>
+      <div class="nav">
+        <a class="brand" href="#">
+          <div class="logo">iN</div>
+          <div>
+            <div style="font-weight:700">iNovaCircuit</div>
+            <div style="font-size:12px;color:var(--muted);margin-top:2px">Soluções em eletrônica</div>
+          </div>
+        </a><nav>
+      <button class="mobile-toggle" aria-expanded="false" aria-controls="main-menu">☰</button>
+      <ul id="main-menu">
+        <li><a href="#home">Início</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+    </nav>
+
+    <a class="cta" href="#contact">Solicitar orçamento</a>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div>
+      <p class="muted">Soluções rápidas e confiáveis</p>
+      <h1>Consertos, manutenção e desenvolvimento em eletrônica</h1>
+      <p class="muted">Recuperamos seus equipamentos com peças de qualidade e diagnóstico preciso. Atendimento regional e suporte remoto.</p>
+      <div class="actions">
+        <a class="cta" href="#contact">Peça um orçamento</a>
+        <a class="btn-outline" href="#portfolio">Ver portfólio</a>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <strong>Atendimento:</strong> Recife / PE — Segunda a Sexta — 9h às 18h
+      </div>
+    </div>
+
+    <div>
+      <div class="hero-visual card">
+        <!-- Espaço para imagem ou mockup. Substitua por <img src="assets/hero.jpg"> se tiver. -->
+        <svg width="220" height="150" viewBox="0 0 220 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="0" y="0" width="220" height="150" rx="12" fill="#f1f5f9"/>
+          <g transform="translate(22,28)" fill="#c7ddff">
+            <rect x="0" y="0" width="176" height="20" rx="4"/>
+            <rect x="0" y="34" width="112" height="12" rx="3"/>
+            <rect x="0" y="54" width="140" height="12" rx="3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="card" style="margin-top:22px">
+    <h2>Serviços</h2>
+    <div class="services">
+      <div class="service">
+        <div style="font-size:22px">🔧</div>
+        <h3>Conserto e manutenção</h3>
+        <p>Conserto de placas, troca de componentes, calibração e testes funcionais.</p>
+      </div>
+      <div class="service">
+        <div style="font-size:22px">💡</div>
+        <h3>Projetos eletrônicos</h3>
+        <p>Desenvolvimento de protótipos, PCBs e soluções sob medida para seu produto.</p>
+      </div>
+      <div class="service">
+        <div style="font-size:22px">📡</div>
+        <h3>Suporte remoto</h3>
+        <p>Diagnóstico remoto, orientação técnica e atualização de firmware quando aplicável.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" style="margin-top:18px">
+    <h2>Portfólio</h2>
+    <div class="portfolio">
+      <article class="project card">
+        <img src="https://via.placeholder.com/600x360?text=Projeto+1" alt="Projeto 1">
+        <div class="info">
+          <h4>Reparo de monitor LED</h4>
+          <p class="muted">Troca de capacitor e ajuste de backlight.</p>
+        </div>
+      </article>
+
+      <article class="project card">
+        <img src="https://via.placeholder.com/600x360?text=Projeto+2" alt="Projeto 2">
+        <div class="info">
+          <h4>PCB personalizado</h4>
+          <p class="muted">Projeto e fabricação de placa para controlador de motor.</p>
+        </div>
+      </article>
+
+      <article class="project card">
+        <img src="https://via.placeholder.com/600x360?text=Projeto+3" alt="Projeto 3">
+        <div class="info">
+          <h4>Atualização de firmware</h4>
+          <p class="muted">Correção de bugs e melhoria de performance.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="card two-col" style="margin-top:18px">
+    <div>
+      <h2>Sobre nós</h2>
+      <p class="muted">A iNovaCircuit é uma oficina e laboratório dedicada à eletrônica prática e ao desenvolvimento de soluções para clientes residenciais e empresariais. Temos foco em diagnósticos rápidos, peças de qualidade e garantia nos serviços prestados.</p>
+      <ul style="margin-top:12px">
+        <li>✔ Diagnóstico detalhado</li>
+        <li>✔ Peças de reposição certificadas</li>
+        <li>✔ Suporte pós-serviço</li>
+      </ul>
+    </div>
+
+    <aside class="card">
+      <h3>Contato rápido</h3>
+      <p><strong>WhatsApp</strong>: (81) 9XXXX-XXXX</p>
+      <p><strong>E-mail</strong>: contato@inovacircuit.com</p>
+      <p class="muted">Substitua por seus contatos reais ou retire a seção se preferir.</p>
+    </aside>
+  </section>
+
+  <section id="contact" class="card" style="margin-top:18px">
+    <h2>Fale com a gente</h2>
+    <!-- Substitua action pelo endpoint do seu formulário (Formspree, Getform etc.) -->
+    <form action="" method="POST" onsubmit="alert('Substitua action pelo endpoint do seu formulário.'); return false;">
+      <div style="display:grid; gap:12px; grid-template-columns:repeat(2,1fr);">
+        <div>
+          <label for="name">Nome</label>
+          <input id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="email" required>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <label for="message">Mensagem</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+      <div style="margin-top:12px; display:flex; gap:10px">
+        <button class="cta" type="submit">Enviar</button>
+        <button class="btn-outline" type="reset">Limpar</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <p>© <span id="year"></span> iNovaCircuit — Todos os direitos reservados.</p>
+</footer>
+
+  </div>  <script>
+    // Atualiza o ano do rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Toggle menu mobile simples
+    const toggle = document.querySelector('.mobile-toggle');
+    const menu = document.getElementById('main-menu');
+    toggle && toggle.addEventListener('click', function(){
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      if(menu.style.display === 'flex'){
+        menu.style.display = '';
+      } else {
+        menu.style.display = 'flex';
+        menu.style.flexDirection = 'column';
+        menu.style.background = 'white';
+        menu.style.position = 'absolute';
+        menu.style.right = '16px';
+        menu.style.top = '64px';
+        menu.style.padding = '12px';
+        menu.style.borderRadius = '10px';
+        menu.style.boxShadow = '0 8px 20px rgba(15,23,42,0.08)';
+      }
+    });
+  </script></body>
+</html>
